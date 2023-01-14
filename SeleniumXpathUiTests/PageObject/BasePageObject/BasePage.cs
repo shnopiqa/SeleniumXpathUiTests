@@ -20,42 +20,42 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
             browser.Navigate(url);
         }
         // Кнопка главная в хедер сайта 
-        private IWebElement HomePageButton => browser.WebDriver.FindElement(
+        private IWebElement _homePageButton => browser.WebDriver.FindElement(
             By.XPath("//a[@href='/' and text() = 'Home']"));
         // Список эелементом в выпадающем списке настроек в хедер сайта 
-        private List<IWebElement> ContentManagmentList => browser.WebDriver.FindElements(
+        private List<IWebElement> _contentManagmentList => browser.WebDriver.FindElements(
             By.XPath("//a[@id='navbarDropdown']")).ToList();
         // Кнопка с выпадющим списком настроек контента 
-        private IWebElement ContentManagmentDropDown => browser.WebDriver.FindElement(
+        private IWebElement _contentManagmentDropDown => browser.WebDriver.FindElement(
             By.XPath("//a[@id='navbarDropdown']"));
         // Кнопка раздела категории товара 
-        private IWebElement CategoryButton => browser.WebDriver.FindElement(
+        private IWebElement _categoryButton => browser.WebDriver.FindElement(
             By.XPath("//a[@href='/Category']"));
         // Кнопка раздела со списком типов приложений 
-        private IWebElement ApplicationTypeButton => browser.WebDriver.FindElement(
+        private IWebElement _applicationTypeButton => browser.WebDriver.FindElement(
             By.XPath("//a[@href='/ApplicationType']"));
         // Кнопка с разделом списка продуктов 
-        private IWebElement ProductButton => browser.WebDriver.FindElement(
+        private IWebElement _productButton => browser.WebDriver.FindElement(
             By.XPath("//a[@href='/ApplicationType']"));
         // Кнопка с разделом создания админа для сайта 
-        private IWebElement CreateAdminUserButton => browser.WebDriver.FindElement(
+        private IWebElement _createAdminUserButton => browser.WebDriver.FindElement(
             By.XPath("//a[@href='/ApplicationType']"));
         // Кнопка с разделом корзины товаров 
-        private IWebElement ShoppingCartButton => browser.WebDriver.FindElement(
+        private IWebElement _shoppingCartButton => browser.WebDriver.FindElement(
             By.XPath("//a[@href='/Cart']"));
         // Кнопка перехода в настройки профиля авторизованного пользователя 
-        private IWebElement ProfileNameButton => browser.WebDriver.FindElement(
+        private IWebElement _profileNameButton => browser.WebDriver.FindElement(
            By.XPath("//a[@id='manage']"));
         // Керпка выхода из аккаунта 
-        private IWebElement LogOutButton => browser.WebDriver.FindElement(
+        private IWebElement _logOutButton => browser.WebDriver.FindElement(
             By.XPath("//a[@id='logout'"));
         // Кнопка входа в аккаунт 
-        private IWebElement LogInButton => browser.WebDriver.FindElement(
+        private IWebElement _logInButton => browser.WebDriver.FindElement(
             By.XPath("//a[@id='login'"));
         // Кнопка регистрации 
-        private IWebElement RegistrationButton => browser.WebDriver.FindElement(
+        private IWebElement _registrationButton => browser.WebDriver.FindElement(
            By.XPath("//a[@id='login'"));
-        private IWebElement LabelToHomePageButton => browser.WebDriver.FindElement(
+        private IWebElement _labelToHomePageButton => browser.WebDriver.FindElement(
           By.XPath("//a[@class='navbar-brand']'"));
     }
 }

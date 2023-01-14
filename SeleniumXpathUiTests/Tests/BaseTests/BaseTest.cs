@@ -14,7 +14,7 @@ namespace SeleniumXpathUiTests.Tests.BaseTests
     {
         protected IBrowser _browser;
         protected BrowserFactory _browserFactory;
-        protected BasePage _browserPage;
+        protected BasePage _basePage;
         public BaseTest(BrowsersTypes browserType)
         {
             _browserFactory = new BrowserFactory();
@@ -24,7 +24,7 @@ namespace SeleniumXpathUiTests.Tests.BaseTests
 
         public void InitalizeBasePage()
         {
-            _browserPage = new BasePage(_browser);
+            _basePage = new BasePage(_browser);
         }
         public void Dispose()
         {

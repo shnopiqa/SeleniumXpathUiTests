@@ -1,4 +1,5 @@
 ﻿using SeleniumXpathUiTests.BrowserHelpers.BrowserTypes;
+using SeleniumXpathUiTests.PageObject.BasePageObject;
 using SeleniumXpathUiTests.Tests.BaseTests;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace SeleniumXpathUiTests.Tests.HomePageTest
         public void TrySomeTest()
         {
             InitalizeBasePage();
-            _browserPage.GoToPageUrl(URL);
+     
         }
     }
 }
