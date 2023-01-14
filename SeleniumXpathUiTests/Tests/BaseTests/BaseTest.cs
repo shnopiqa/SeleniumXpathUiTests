@@ -1,12 +1,7 @@
-﻿using SeleniumXpathUiTests.BrowserHelpers.BrowserTypes;
+﻿using SeleniumXpathUiTests.BrowserHelpers;
+using SeleniumXpathUiTests.BrowserHelpers.BrowserTypes;
 using SeleniumXpathUiTests.BrowserHelpers.Interface;
-using SeleniumXpathUiTests.BrowserHelpers;
 using SeleniumXpathUiTests.PageObject.BasePageObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumXpathUiTests.Tests.BaseTests
 {

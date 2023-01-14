@@ -1,14 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumXpathUiTests.BrowserHelpers.Interface;
 using SeleniumXpathUiTests.PageObject.BasePageObject;
-using SeleniumXpathUiTests.PageObject.HomePageObject.Product;
 using SeleniumXpathUiTests.PageObject.HomePageObject.ProductHelper;
-using SeleniumXpathUiTests.PageObject.HomePageObject.ProductPageHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumXpathUiTests.PageObject.HomePageObject
 {
@@ -44,6 +37,7 @@ namespace SeleniumXpathUiTests.PageObject.HomePageObject
         private List<IWebElement> _applicationTypeList => browser.WebDriver.FindElements(By.XPath("//span[@class='badge p-2 border w-100' and @style='background-color:lightskyblue']")).ToList();
         // Получение всех кнопок просмотра деталей определенного товара 
         private List<IWebElement> _viewDetailsButtons => browser.WebDriver.FindElements(By.XPath("//a[@class='btn btn-dark form-control btn-sm p-2']")).ToList();
+        // Получение первого продукта из списка со всеми значениями карточки 
         public Product InitializeFirstOrDefaultProductCard() 
         {
            return new Product()
@@ -55,6 +49,14 @@ namespace SeleniumXpathUiTests.PageObject.HomePageObject
                CategoryType = _categoryTypesList.Select(x => x.Text).FirstOrDefault(),
                ApplicationType = _applicationTypeList.Select(x => x.Text).FirstOrDefault()
            };
+        }
+        public void GetFristProductCardDetailPage() 
+        {
+            if(_viewDetailsButtons.Count != 0) 
+            {
+                _viewDetailsButtons.FirstOrDefault().Click();
+            }
+            throw new Exception($"Колличество кнопок деталей продукта = {_viewDetailsButtons.Count}");
         }
 
     }
