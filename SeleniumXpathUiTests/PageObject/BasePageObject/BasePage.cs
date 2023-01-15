@@ -1,11 +1,14 @@
 ﻿using OpenQA.Selenium;
 using SeleniumXpathUiTests.BrowserHelpers.Interface;
+using SeleniumXpathUiTests.PageObject.HomePageObject;
+using SeleniumXpathUiTests.PageObject.WaitHelpersForPageObject;
 
 namespace SeleniumXpathUiTests.PageObject.BasePageObject
 {
     public class BasePage
     {
         public IBrowser browser;
+
         public BasePage(IBrowser browser)
         {
             this.browser = browser;
@@ -17,9 +20,6 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
         // Кнопка главная в хедер сайта 
         private IWebElement _homePageButton => browser.WebDriver.FindElement(
             By.XPath("//a[@href='/' and text() = 'Home']"));
-        // Список эелементом в выпадающем списке настроек в хедер сайта 
-        private List<IWebElement> _contentManagmentList => browser.WebDriver.FindElements(
-            By.XPath("//a[@id='navbarDropdown']")).ToList();
         // Кнопка с выпадющим списком настроек контента 
         private IWebElement _contentManagmentDropDown => browser.WebDriver.FindElement(
             By.XPath("//a[@id='navbarDropdown']"));
@@ -50,7 +50,34 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
         // Кнопка регистрации 
         private IWebElement _registrationButton => browser.WebDriver.FindElement(
            By.XPath("//a[@id='login'"));
+        // Логотип сайта для перехода на главную
         private IWebElement _labelToHomePageButton => browser.WebDriver.FindElement(
           By.XPath("//a[@class='navbar-brand']'"));
+        // Перейти на главную страницу по клику на логотип 
+        public void GetHomePageByLogo() 
+        {
+            WaitHelperPage.WaitUntilEelementIsClickable(browser, _labelToHomePageButton, 10);
+            _labelToHomePageButton.Click();
+        }
+        // Перейти на главную страницу по клику на кнопку Главная 
+        public HomePage GetHomePageByHomeButton()
+        {
+            WaitHelperPage.WaitUntilEelementIsClickable(browser, _labelToHomePageButton, 10);
+            _labelToHomePageButton.Click();
+            return new HomePage(browser);
+        }
+        // Открыть выпадающее меню со списком страниц управления продуктами 
+        public void GetContentManagmentButtonsList()
+        {
+            WaitHelperPage.WaitUntilEelementIsClickable(browser, _labelToHomePageButton, 10);
+            _contentManagmentDropDown.Click();
+        }
+        // Открыть страницу настройки категорий товаров 
+        public void GetCategoryPage() 
+        {
+            GetContentManagmentButtonsList();
+            WaitHelperPage.WaitUntilEelementIsClickable(browser, _categoryButton, 10);
+            _categoryButton.Click();
+        }
     }
 }
