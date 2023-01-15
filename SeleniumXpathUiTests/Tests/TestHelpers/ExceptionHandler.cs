@@ -19,7 +19,7 @@ namespace SeleniumXpathUiTests.Tests.Helpers
             catch (Exception ex)
             {
 
-                Logger.Error($"Exception message: {ex}");
+                Logger.Info($"Exception message: {ex}");
                 throw;
             }
         }

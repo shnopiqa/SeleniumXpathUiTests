@@ -2,16 +2,20 @@
 using SeleniumXpathUiTests.BrowserHelpers.Interface;
 using SeleniumXpathUiTests.PageObject.HomePageObject;
 using SeleniumXpathUiTests.PageObject.WaitHelpersForPageObject;
+using SeleniumXpathUiTests.Tests.Helpers;
 
 namespace SeleniumXpathUiTests.PageObject.BasePageObject
 {
     public class BasePage
     {
         public IBrowser browser;
+        protected ExceptionHandler _exceptionHandler;
+
 
         public BasePage(IBrowser browser)
         {
             this.browser = browser;
+            _exceptionHandler = new ExceptionHandler();
         }
         public void GoToPageUrl(string url)
         {
@@ -37,7 +41,7 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
             By.XPath("//a[@href='/ApplicationType']"));
         // Кнопка с разделом корзины товаров 
         private IWebElement _shoppingCartButton => browser.WebDriver.FindElement(
-            By.XPath("//a[@href='/Cart']"));
+            By.XPath("//a[@class ='nav-link']"));
         // Кнопка перехода в настройки профиля авторизованного пользователя 
         private IWebElement _profileNameButton => browser.WebDriver.FindElement(
            By.XPath("//a[@id='manage']"));
@@ -78,6 +82,73 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
             GetContentManagmentButtonsList();
             WaitHelperPage.WaitUntilEelementIsClickable(browser, _categoryButton, 10);
             _categoryButton.Click();
+        }
+        // Открыть страницу настройки типов приложений 
+        public void GetApplicationTypePage()
+        {
+            GetContentManagmentButtonsList();
+            WaitHelperPage.WaitUntilEelementIsClickable(browser, _applicationTypeButton, 10);
+            _applicationTypeButton.Click();
+        }
+        // Открыть страницу управления продуктами
+        public void GetProductPage()
+        {
+            GetContentManagmentButtonsList();
+            WaitHelperPage.WaitUntilEelementIsClickable(browser, _productButton, 10);
+            _productButton.Click();
+        }
+        // Открыть страницу управления администраторами сайта
+        public void GetCreateAdminUserPage()
+        {
+            GetContentManagmentButtonsList();
+            WaitHelperPage.WaitUntilEelementIsClickable(browser, _createAdminUserButton, 10);
+            _createAdminUserButton.Click();
+        }
+        // Проверка на заполненную или пустую корзину товаров 
+        public bool ShopingCartIsNotEmpty() 
+        {
+            // Получить текст без пробелов в наале и конце строки 
+            string cartValue = _shoppingCartButton.Text.Trim();
+
+            // Удалить все, кроме значения колличества товаров 
+            cartValue = new string(cartValue.Where(char.IsDigit).ToArray());
+            // Корзина пустая или нет
+            bool cartIsNotEmpty = int.Parse(cartValue) > 0;
+            return cartIsNotEmpty;
+
+        }
+        // Проверка на авторизацию пользователя 
+        public bool UserIsAuthorize() 
+        {
+            bool userIsAuthorized = true;
+            _exceptionHandler.HandleException(() =>
+            {
+                if (_profileNameButton.Enabled && _logOutButton.Enabled)
+                {
+                    userIsAuthorized = true;
+                }
+                else
+                {
+                    userIsAuthorized = false;
+                    throw new Exception("Пользователь не авторизован в сиситеме");
+                }
+            });
+            return userIsAuthorized;
+           
+        }
+        // Открыть корзину с товарами 
+        public void GetShopingCartPage()
+        {
+            if (ShopingCartIsNotEmpty() == true && UserIsAuthorize() == true)
+            {
+                WaitHelperPage.WaitUntilEelementIsClickable(browser, _shoppingCartButton, 10);
+                _shoppingCartButton.Click();
+            }
+            else
+            {
+                throw new Exception($"Корзина пуста реузультат проверки: {ShopingCartIsNotEmpty()}"); 
+            }
+
         }
     }
 }

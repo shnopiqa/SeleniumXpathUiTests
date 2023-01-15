@@ -3,6 +3,7 @@ using SeleniumXpathUiTests.BrowserHelpers.BrowserTypes;
 using SeleniumXpathUiTests.BrowserHelpers.Interface;
 using SeleniumXpathUiTests.PageObject.BasePageObject;
 using SeleniumXpathUiTests.PageObject.HomePageObject;
+using SeleniumXpathUiTests.Tests.Helpers;
 
 namespace SeleniumXpathUiTests.Tests.BaseTests
 {
@@ -11,12 +12,14 @@ namespace SeleniumXpathUiTests.Tests.BaseTests
         protected IBrowser _browser;
         protected BrowserFactory _browserFactory;
         protected BasePage _basePage;
-        protected HomePage _homePage; 
+        protected HomePage _homePage;
+        protected ExceptionHandler _exceptionHandler;
         public BaseTest(BrowsersTypes browserType)
         {
             _browserFactory = new BrowserFactory();
             _browser = _browserFactory.CreateBrowser(browserType);
             _browser.WebDriver.Manage().Window.Maximize();
+            _exceptionHandler = new ExceptionHandler();
         }
         public void InitalizeHomePage() 
         {

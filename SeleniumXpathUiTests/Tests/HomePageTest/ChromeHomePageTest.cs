@@ -1,23 +1,29 @@
 ﻿using SeleniumXpathUiTests.BrowserHelpers.BrowserTypes;
+using SeleniumXpathUiTests.LoggerHelper;
 using SeleniumXpathUiTests.Tests.BaseTests;
-
 namespace SeleniumXpathUiTests.Tests.HomePageTest
 {
     public class ChromeHomePageTest : BaseTest
     {
-        private const string URL = "https://localhost:7217/";
         public ChromeHomePageTest() : base(BrowsersTypes.Chrome)
         {
 
         }
         [Fact]
-        public void TrySomeTest()
+        public void GetShopinCartPageTest()
         {
             InitalizeBasePage();
-            InitalizeHomePage();
-            _basePage.GoToPageUrl(URL);
-            var Page = _homePage.InitializeFirstOrDefaultProductCard();
-     
+            Logger.Info("Инициализация базовой страницы");
+            // Обертка над try/catch 
+            _exceptionHandler.HandleException(() =>
+            {
+                InitalizeHomePage();
+                Logger.Info("Инициализация страницы Home");
+                _basePage.GoToPageUrl(URL);
+                Logger.Info($"Переход на главную страницу по ссылке {URL}");
+                _basePage.GetShopingCartPage();
+                Logger.Info("Переход на страницу корзины");
+            });
         }
     }
 }
