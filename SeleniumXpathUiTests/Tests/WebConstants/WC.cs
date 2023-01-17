@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumXpathUiTests.Tests.WebConstants
 {
-    public class WC
+    public static class WC
     {
         public const string BaseURL = "https://localhost:7217/";
         public const string CategoryURL = $"{BaseURL}Category";

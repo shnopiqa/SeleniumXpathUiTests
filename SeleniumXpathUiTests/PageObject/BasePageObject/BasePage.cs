@@ -10,8 +10,6 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
     {
         public IBrowser browser;
         protected ExceptionHandler _exceptionHandler;
-
-
         public BasePage(IBrowser browser)
         {
             this.browser = browser;
@@ -47,13 +45,13 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
            By.XPath("//a[@id='manage']"));
         // Керпка выхода из аккаунта 
         private IWebElement _logOutButton => browser.WebDriver.FindElement(
-            By.XPath("//a[@id='logout'"));
+            By.XPath("//a[@id='logout']"));
         // Кнопка входа в аккаунт 
         private IWebElement _logInButton => browser.WebDriver.FindElement(
-            By.XPath("//a[@id='login'"));
+            By.XPath("//a[@id='login']"));
         // Кнопка регистрации 
         private IWebElement _registrationButton => browser.WebDriver.FindElement(
-           By.XPath("//a[@id='login'"));
+           By.XPath("//a[@id='register']"));
         // Логотип сайта для перехода на главную
         private IWebElement _labelToHomePageButton => browser.WebDriver.FindElement(
           By.XPath("//a[@class='navbar-brand']'"));
@@ -63,7 +61,7 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
             WaitHelperPage.WaitUntilEelementIsClickable(browser, _labelToHomePageButton, 10);
             _labelToHomePageButton.Click();
         }
-        // Перейти на главную страницу по клику на кнопку Главная 
+        // Перейти на главную страницу с помощью кнопки Home
         public HomePage GetHomePageByHomeButton()
         {
             WaitHelperPage.WaitUntilEelementIsClickable(browser, _labelToHomePageButton, 10);
@@ -107,12 +105,12 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
         // Проверка на заполненную или пустую корзину товаров 
         public bool ShopingCartIsNotEmpty() 
         {
-            // Получить текст без пробелов в наале и конце строки 
+            // Получить текст без пробелов в начале и конце строки 
             string cartValue = _shoppingCartButton.Text.Trim();
 
             // Удалить все, кроме значения колличества товаров 
             cartValue = new string(cartValue.Where(char.IsDigit).ToArray());
-            // Корзина пустая или нет
+            // Проверка (корзина пустая или нет)
             bool cartIsNotEmpty = int.Parse(cartValue) > 0;
             return cartIsNotEmpty;
 
@@ -121,34 +119,97 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
         public bool UserIsAuthorize() 
         {
             bool userIsAuthorized = true;
-            _exceptionHandler.HandleException(() =>
+            try 
             {
                 if (_profileNameButton.Enabled && _logOutButton.Enabled)
                 {
                     userIsAuthorized = true;
                 }
-                else
-                {
-                    userIsAuthorized = false;
-                    throw new Exception("Пользователь не авторизован в сиситеме");
-                }
-            });
+            }
+            catch(Exception ex)
+            {
+                userIsAuthorized = false;
+            }
             return userIsAuthorized;
-           
         }
         // Открыть корзину с товарами 
         public void GetShopingCartPage()
         {
-            if (ShopingCartIsNotEmpty() == true && UserIsAuthorize() == true)
+            bool shopingCartInsNotEmpty = ShopingCartIsNotEmpty();
+            bool userIsAuthorize = UserIsAuthorize();
+            if (shopingCartInsNotEmpty == true && userIsAuthorize == true)
             {
                 WaitHelperPage.WaitUntilEelementIsClickable(browser, _shoppingCartButton, 10);
                 _shoppingCartButton.Click();
             }
             else
             {
-                throw new Exception($"Корзина пуста реузультат проверки: {ShopingCartIsNotEmpty()}"); 
+                throw new Exception($"Корзина пуста или пользователь не авторизован, результат проверки ShopingCartIsNotEmpty: {shopingCartInsNotEmpty}, UserIsAuthorize : {userIsAuthorize}"); 
             }
+        }
+        // Открыть страницу регистрации  пользоваателя 
+        public void GetRegisterPage() 
+        {
+            bool userIsAuthorize = UserIsAuthorize();
+            _exceptionHandler.HandleException(() =>
+            {
+                if (userIsAuthorize == false)
+                {
+                    WaitHelperPage.WaitUntilEelementIsClickable(browser, _registrationButton, 10);
+                    _registrationButton.Click();
+                }
+                else
+                {
+                    throw new Exception("Пользователь авторизован");
+                }
+            });
+        }
+        // Открыть страницу логина 
+        public void GetLoginPage()
+        {
+            bool userIsAuthorize = UserIsAuthorize();
+            _exceptionHandler.HandleException(() =>
+            {
+                if (userIsAuthorize == false)
+                {
+                    WaitHelperPage.WaitUntilEelementIsClickable(browser, _logInButton, 10);
+                    _logInButton.Click();
+                }
+                else
+                {
+                    throw new Exception("Пользователь авторизован");
+                }
+            });
+        }
+        // Выйти из аккаунт 
+        public void LogOutFromPage()
+        {
+            bool userIsAuthorize = UserIsAuthorize();
+            _exceptionHandler.HandleException(() =>
+            {
+                if (userIsAuthorize == true )
+                {
+                    WaitHelperPage.WaitUntilEelementIsClickable(browser, _logOutButton, 10);
+                    _logInButton.Click();
+                }
+                else
+                {
+                    throw new Exception("Пользователь не авторизован");
+                }
+            });
+        }
+        // Переход на страницу управления профиля пользователя 
+        public void GetManageProfilePage() 
+        {
+            if (UserIsAuthorize() == true) 
+            {
+                WaitHelperPage.WaitUntilEelementIsClickable(browser, _profileNameButton, 10);
+                _profileNameButton.Click();
+            }
+            else 
+            {
 
+            }
         }
     }
 }

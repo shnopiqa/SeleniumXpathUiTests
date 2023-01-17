@@ -9,7 +9,6 @@ namespace SeleniumXpathUiTests.PageObject.HomePageObject
 {
     public class HomePage:BasePage
     {
-  
         public HomePage(IBrowser browser) : base(browser)
         {
         }

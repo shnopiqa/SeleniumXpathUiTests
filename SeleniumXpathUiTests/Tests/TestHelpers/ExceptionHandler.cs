@@ -23,5 +23,18 @@ namespace SeleniumXpathUiTests.Tests.Helpers
                 throw;
             }
         }
+        public bool HandlerExceptionForBollianMethods(Action action) 
+        {
+            try 
+            {
+                action();
+                return true;
+            }
+            catch(Exception ex) 
+            {
+                Logger.Info($"Exception message: {ex}");
+                return false;
+            }
+        }
     }
 }

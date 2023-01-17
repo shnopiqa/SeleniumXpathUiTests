@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="SeleniumXpathUiTests.Tests.BaseTests.BaseTest" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAACAIIAAAAAAAAEQAAAAAAAAAAAAAACIAAAA=</HashCode>
+      <FileName>Tests\BaseTests\BaseTest.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SeleniumXpathUiTests.Tests.HomePageTest.ChromeHomePageTest" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tests\HomePageTest\ChromeHomePageTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.Tests.Helpers.ExceptionHandler" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Tests\TestHelpers\ExceptionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.Tests.TestHelpers.WaitHelper" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAg=</HashCode>
+      <FileName>Tests\TestHelpers\WaitHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.Tests.WebConstants.WC" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAIAAAAAAAAAgAAAAAAAGAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Tests\WebConstants\WC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.PageObject.BasePageObject.BasePage">
+    <Position X="1.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>gAaAAAgBAIACBIAAAAAQABUgBCAAoAAAABAMAJAAQAA=</HashCode>
+      <FileName>PageObject\BasePageObject\BasePage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.PageObject.HomePageObject.ProductHelper.Product" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQgAAAAAAAAAAQAAAAAABAAAAAIAAAAAAA=</HashCode>
+      <FileName>PageObject\HomePageObject\ProductHelper\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.PageObject.HomePageObject.HomePage">
+    <Position X="0.5" Y="8" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEAAAAAAAAAAoAICIgAEAAAFAAAAAAACAAIBAA=</HashCode>
+      <FileName>PageObject\HomePageObject\HomePage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.PageObject.WaitHelpersForPageObject.WaitHelperPage" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAg=</HashCode>
+      <FileName>PageObject\WaitHelpersForPageObject\WaitHelperPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.LoggerHelper.Logger" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAAAAAAIAAAABEAAAAAAEAEAAA=</HashCode>
+      <FileName>LoggHelpers\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeleniumXpathUiTests.BrowserHelpers.Browser" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAYAAAAAAA=</HashCode>
+      <FileName>BrowserHelpers\Browser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" Collapsed="true" />
+  </Class>
+  <Class Name="SeleniumXpathUiTests.BrowserHelpers.BrowserFactory" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>BrowserHelpers\BrowserFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="SeleniumXpathUiTests.BrowserHelpers.Interface.IBrowser">
+    <Position X="6.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAA=</HashCode>
+      <FileName>BrowserHelpers\Interface\IBrowser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="SeleniumXpathUiTests.BrowserHelpers.BrowserTypes.BrowsersTypes" Collapsed="true">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgQAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BrowserHelpers\BrowserTypes\BrowsersTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
