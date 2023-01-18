@@ -1,63 +1,38 @@
-﻿using SeleniumXpathUiTests.BrowserHelpers.BrowserTypes;
+﻿using SeleniumXpathUiTests.ApiControllerHelper;
+using SeleniumXpathUiTests.BrowserHelpers.BrowserTypes;
 using SeleniumXpathUiTests.LoggerHelper;
 using SeleniumXpathUiTests.Tests.BaseTests;
 using SeleniumXpathUiTests.Tests.WebConstants;
+using System.Diagnostics;
 
 namespace SeleniumXpathUiTests.Tests.HomePageTest
 {
     public class ChromeHomePageTest : BaseTest
     {
+        ApiConrollerForCreateProduct apiController { get; set; }
         public ChromeHomePageTest() : base(BrowsersTypes.Chrome)
         {
-
+            apiController = new ApiConrollerForCreateProduct();
         }
         [Fact]
-        public void GetShopinCartPageTest()
+        public void ProductNameDisplayedOnFirstCardTest() 
         {
-            InitalizeBasePage();
-            Logger.Info("Инициализация базовой страницы");
-            // Обертка над try/catch 
-            _exceptionHandler.HandleException(() =>
+            ProductVM productVM = new ProductVM()
             {
-                InitalizeHomePage();
-                Logger.Info("Инициализация страницы Home");
-                _basePage.GoToPageUrl(WC.BaseURL);
-                Logger.Info($"Переход на главную страницу по ссылке {WC.BaseURL}");
-                _basePage.GetShopingCartPage();
-                Logger.Info("Переход на страницу корзины");
-            });
-        }
-        [Fact]
-        public void GetRegistPageTest()
-        {
-            InitalizeBasePage();
-            Logger.Info("Инициализация базовой страницы");
-            // Обертка над try/catch 
-            _exceptionHandler.HandleException(() =>
-            {
-                InitalizeHomePage();
-                Logger.Info("Инициализация страницы Home");
-                _basePage.GoToPageUrl(WC.BaseURL);
-                Logger.Info($"Переход на главную страницу по ссылке {WC.BaseURL}");
-                _basePage.GetRegisterPage();
-                Logger.Info("Переход на страницу регистрации");
-            });
-        }
-        [Fact]
-        public void GetLoginPageTest()
-        {
-            InitalizeBasePage();
-            Logger.Info("Инициализация базовой страницы");
-            // Обертка над try/catch 
-            _exceptionHandler.HandleException(() =>
-            {
-                InitalizeHomePage();
-                Logger.Info("Инициализация страницы Home");
-                _basePage.GoToPageUrl(WC.BaseURL);
-                Logger.Info($"Переход на главную страницу по ссылке {WC.BaseURL}");
-                _basePage.GetLoginPage();
-                Logger.Info("Переход на страницу регистрации");
-            });
+                Name = "Test",
+                Description = "some disc",
+                Price = 3.4,
+                Image = "C:\\Users\\dokto\\OneDrive\\Рабочий стол\\6amzee.gif",
+                CategoryId = 6,
+                AppTypeId = 3
+            };
+            apiController.CreateUser(productVM);
+            string expectedProductName = "321";
+            Logger.Info("Переход на главную страницу");
+            _basePage.GoToPageUrl(WC.BaseURL);
+            Logger.Info("Инициализации главной страницы"); 
+            var product = _homePage.InitializeFirstOrDefaultProductCard();
+            Assert.Equal(expectedProductName, product.Name);
         }
     }
 }

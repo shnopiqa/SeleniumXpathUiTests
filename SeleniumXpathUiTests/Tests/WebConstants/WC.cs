@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit.Sdk;
 
 namespace SeleniumXpathUiTests.Tests.WebConstants
 {
@@ -15,6 +16,5 @@ namespace SeleniumXpathUiTests.Tests.WebConstants
         public const string ProductPageURL = $"{BaseURL}Product";
         public const string CreateAdminUserURL = $"{BaseURL}Identity/Account/Register";
         public const string ManageAccounURL = $"{BaseURL}Identity/Account/Manage"; 
-
     }
 }

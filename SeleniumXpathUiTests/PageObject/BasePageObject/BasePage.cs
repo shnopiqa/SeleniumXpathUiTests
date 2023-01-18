@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Internal;
 using SeleniumXpathUiTests.BrowserHelpers.Interface;
 using SeleniumXpathUiTests.PageObject.HomePageObject;
 using SeleniumXpathUiTests.PageObject.WaitHelpersForPageObject;
@@ -55,6 +56,9 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
         // Логотип сайта для перехода на главную
         private IWebElement _labelToHomePageButton => browser.WebDriver.FindElement(
           By.XPath("//a[@class='navbar-brand']'"));
+        // Футтер сайта 
+        private IWebElement _footter => browser.WebDriver.FindElement(
+            By.XPath("//footer/div[@class = 'container']"));
         // Перейти на главную страницу по клику на логотип 
         public void GetHomePageByLogo() 
         {
@@ -201,15 +205,29 @@ namespace SeleniumXpathUiTests.PageObject.BasePageObject
         // Переход на страницу управления профиля пользователя 
         public void GetManageProfilePage() 
         {
-            if (UserIsAuthorize() == true) 
+            _exceptionHandler.HandleException(() =>
             {
-                WaitHelperPage.WaitUntilEelementIsClickable(browser, _profileNameButton, 10);
-                _profileNameButton.Click();
-            }
-            else 
-            {
-
-            }
+                if (UserIsAuthorize() == true)
+                {
+                    WaitHelperPage.WaitUntilEelementIsClickable(browser, _profileNameButton, 10);
+                    _profileNameButton.Click();
+                }
+                else
+                {
+                    throw new Exception("Пользователь не авторизован");
+                }
+            });
         }
+        public string GetFotterText() 
+        {
+            WaitHelperPage.WaitUntilElementIsVisable(browser, _footter, 10);
+            string foterText = string.Empty;
+            _exceptionHandler.HandleException(() =>
+            {
+                foterText = _footter.Text.Trim();
+            });
+            return foterText;
+        }
+
     }
 }

@@ -20,11 +20,15 @@ namespace SeleniumXpathUiTests.Tests.BaseTests
             _browser = _browserFactory.CreateBrowser(browserType);
             _browser.WebDriver.Manage().Window.Maximize();
             _exceptionHandler = new ExceptionHandler();
+            InitalizeBasePage();
+            InitalizeHomePage();
         }
+        // инициализации главной страницы 
         public void InitalizeHomePage() 
         {
             _homePage = new HomePage(_browser);
         }
+      
         public void InitalizeBasePage()
         {
             _basePage = new BasePage(_browser);
